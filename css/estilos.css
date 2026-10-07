@@ -1,0 +1,11 @@
+  /* Estilos CSS para el body indicado aqui */
+        body{
+            font-family: Arial;
+        }
+        h1{
+            color: blue;
+            background-color: orange;
+        }
+        #h2{
+            color: red;   
+        }
