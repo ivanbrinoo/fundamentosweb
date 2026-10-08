@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calcularSalario(){
+        //Necesito el valor del input de horas y salario por hora, para poder calcular el salario total
+        let horas = document.getElementById("horas");
+        let salario = document.getElementById("salario");
+        let salariototal = document.getElementById("salariototal");
+        //Necesito saber si trabaja horas extras, si trabaja mas de 36 horas, el importe de horas extra sera 2€ mas por hora.
+        //Si trabaja menos de 36 horas, cobrara 10€ por hora, si trabaja mas de 36 horas, cobrara 12€ por hora.
+        if(horas.value > 36){
+            salariototal.innerHTML = "Salario Total: " + (horas.value * (salario.value + 2));
+        }else{
+            salariototal.innerHTML = "Salario Total: " + (horas.value * salario.value);
+        }
+        //necesito sacar el salario total a una variable para poder mostrarlo en el html
+        let total = salariototal.innerHTML;
+
+    } 
+    </script>
+</head>
+<body>
+    <h1>Salario por Hora:</h1>
+    Horas trabajadas: <input type="number" id="horas">
+    <br/><br/>
+    Salario por hora: <input type="number" id="salario">
+    <br/><br/>
+    <button onclick="calcularSalario()">Calcular Salario</button>
+    <h3 id="salariototal">Salario Total:</h3>
+</body>
+</html>
