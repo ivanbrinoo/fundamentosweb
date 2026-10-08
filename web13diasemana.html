@@ -7,7 +7,7 @@
     <script>
         function calcularDia(){
             let dia = parseInt(document.getElementById("cajadia").value)
-            let mes = parseInt(document.getElementById("cajadia").value)
+            let mes = parseInt(document.getElementById("cajames").value)
             let anyo = parseInt(document.getElementById("cajaanyo").value)
             //hacemos el calculo dependiendo del mes
             if (mes == 1){
@@ -41,15 +41,15 @@
             }else if (resultado == 1){
                 diasemana = "DOMINGO";
             }else if (resultado == 2){
-                diasemana == "LUNES";
+                diasemana = "LUNES";
             }else if (resultado == 3){
-                diasemana == "MARTES";
+                diasemana = "MARTES";
             }else if (resultado == 4){
-                diasemana == "MIERCOLES";
+                diasemana = "MIERCOLES";
             }else if (resultado == 5){
-                diasemana == "JUEVES";
+                diasemana = "JUEVES";
             }else if (resultado == 6){
-                diasemana == "VIERNES";
+                diasemana = "VIERNES";
             }
             let mensaje = document.getElementById("mensaje");
             mensaje.innerText = "El dia es " + diasemana;
