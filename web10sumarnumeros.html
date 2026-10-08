@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sumarNumeros() {
+            let numero1 = document.getElementById("numero1");
+            let numero2 = document.getElementById("numero2");
+            //recuperamos el elemento mensaje
+            let resultado = document.getElementById("resultado");
+            //quiero el valor del numero1
+            let valor1 = parseInt(numero1.value);
+            //quiero el valor del numero2
+            let valor2 = parseInt(numero2.value);
+            //quiero sumar los dos valores
+            let suma = valor1 + valor2;
+            //escribimos el mensaje la suma
+            resultado.innerHTML = "El resultado es :  " + suma;
+
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Vamos a sumar números en JavaScript</h1>
+    Introduce el primer numero: <input type="number" id="numero1">
+    <br/><br/>
+    Introduce el segundo numero: <input type="number" id="numero2">
+    <br/><br/>
+    <button onclick="sumarNumeros()">Sumar numeros</button>
+    <h3 id="resultado">Resultado:</h3>
+</body>
+</html>
