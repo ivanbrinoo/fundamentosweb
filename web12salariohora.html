@@ -10,14 +10,21 @@
         let horas = document.getElementById("horas");
         let salario = document.getElementById("salario");
         let salariototal = document.getElementById("salariototal");
+        //Necesito una variable para las horas extras, si trabaja mas de 36 horas, el importe de horas extra sera 2€ mas por hora.
+        let horasExtras = 0;
+        //Necesito otra variable para el importe extra, si trabaja mas de 36 horas, el importe de horas extra sera 2€ mas por hora.
+        let importeExtra = 0;
         //Necesito saber si trabaja horas extras, si trabaja mas de 36 horas, el importe de horas extra sera 2€ mas por hora.
         //Si trabaja menos de 36 horas, cobrara 10€ por hora, si trabaja mas de 36 horas, cobrara 12€ por hora.
         if(horas.value > 36){
-            salariototal.innerHTML = "Salario Total: " + (horas.value * (salario.value + 2));
+            horasExtras = horas.value - 36;
+            importeExtra = horasExtras * 2;
+            salariototal.innerHTML = "Salario Total: " + (36 * salario.value + importeExtra);
         }else{
             salariototal.innerHTML = "Salario Total: " + (horas.value * salario.value);
         }
-        //necesito sacar el salario total a una variable para poder mostrarlo en el html
+        //necesito sacar el salario total a una variable para poder mostrarlo en el htm
+        // Necesito ver el salario con decimales
         let total = salariototal.innerHTML;
 
     } 
