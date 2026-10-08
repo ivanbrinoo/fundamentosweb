@@ -5,38 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function calcularSalario(){
-        //Necesito el valor del input de horas y salario por hora, para poder calcular el salario total
-        let horas = document.getElementById("horas");
-        let salario = document.getElementById("salario");
-        let salariototal = document.getElementById("salariototal");
-        //Necesito una variable para las horas extras, si trabaja mas de 36 horas, el importe de horas extra sera 2€ mas por hora.
-        let horasExtras = 0;
-        //Necesito otra variable para el importe extra, si trabaja mas de 36 horas, el importe de horas extra sera 2€ mas por hora.
-        let importeExtra = 0;
-        //Necesito saber si trabaja horas extras, si trabaja mas de 36 horas, el importe de horas extra sera 2€ mas por hora.
-        //Si trabaja menos de 36 horas, cobrara 10€ por hora, si trabaja mas de 36 horas, cobrara 12€ por hora.
-        if(horas.value > 36){
-            horasExtras = horas.value - 36;
-            importeExtra = horasExtras * 2;
-            salariototal.innerHTML = "Salario Total: " + (36 * salario.value + importeExtra);
-        }else{
-            salariototal.innerHTML = "Salario Total: " + (horas.value * salario.value);
+        function calcularDatos() {
+            //recuperamos la caja de horas
+            let cajahoras = document.getElementById("cajahoras");
+            //recuperamos la caja del importe hora
+            let cajaimporte = document.getElementById("cajaimporte");
+            //necesito una variable con el numero horas
+            let horas = parseInt(cajahoras.value);
+            //necesito una variable con el precio hora
+            let precio = parseInt(cajaimporte.value);
+            //quiero saber si el usuario tiene horas extra a partir 
+            //de la hora 36.
+            //necesito una variable para guardar las horas extra
+            let horasextra = 0;
+            //necesito una variable para el importe base
+            let importebase = 0;
+            let importeextra = 0;
+            //otra variable para el importe extra
+            if (horas > 36){
+                //aqui ya tengo horas extra!!!
+                horasextra = horas - 36;
+                importeextra = horasextra * (precio + 2);
+                importebase = 36 * precio;
+            }else{
+                importebase = horas * precio;
+            }
+            //recuperamos el mensaje
+            let mensaje = document.getElementById("mensaje");
+            //escribimos los datos
+            mensaje.innerText = "Horas: " + horas
+            + ", Precio hora: " + precio
+            + ", Importe base: " + importebase
+            + ", Horas extra: " + horasextra
+            + ", Importe extra: " + importeextra;
         }
-        //necesito sacar el salario total a una variable para poder mostrarlo en el htm
-        // Necesito ver el salario con decimales
-        let total = salariototal.innerHTML;
-
-    } 
     </script>
 </head>
 <body>
-    <h1>Salario por Hora:</h1>
-    Horas trabajadas: <input type="number" id="horas">
-    <br/><br/>
-    Salario por hora: <input type="number" id="salario">
-    <br/><br/>
-    <button onclick="calcularSalario()">Calcular Salario</button>
-    <h3 id="salariototal">Salario Total:</h3>
+    <h1>Ejemplo horas extra</h1>
+    Número horas trabajadas:
+    <input type="number" id="cajahoras"/><br/>
+    Precio hora
+    <input type="number" id="cajaimporte"/><br/>
+    <button onclick="calcularDatos()">Calcular cosas</button>
+    <p id="mensaje"></p>
 </body>
 </html>
