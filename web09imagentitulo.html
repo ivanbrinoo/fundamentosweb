@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo GetElementById</title>
+    <style>
+        img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        function cambiarImagen(){
+            let imagen = document.getElementById("imagenlogo");
+            imagen.src = "imagenes/movilapple.webp";
+        }
+        function restaurarImagen(){
+            let imagenvuelta = document.getElementById("imagenlogo");
+            imagenvuelta.src="imagenes/logocabecera.avif";
+        }
+        function cambiartitulo(){
+            let titulo = document.getElementById("titulo");
+            titulo.innerHTML = "El titulo ha cambiado!!!!";
+        }
+        function volveraltituloanterior(){
+            let tituloanterior = document.getElementById("titulo");
+            tituloanterior.innerHTML ="He vuelto al titulo anterior";
+        }
+    </script>
+</head>
+<body>
+    <h1>Usando el GetElementById</h1>
+    <h2 id="titulo" onmouseover="cambiartitulo()" onmouseout="volveraltituloanterior()">Esto es un titulo H2</h2>
+    <img src="imagenes/logocabecera.avif" id="imagenlogo" onmouseover="cambiarImagen()" onmouseout="restaurarImagen()">
+
+</body>
+</html>
