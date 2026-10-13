@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function generarCollatz(){
+            //recuperamos la lista de numeros para el dibujo
+            let listanumeros = document.getElementById("listanumeros");
+            //recuperamos la caja number
+            let cajanumber = document.getElementById("cajanumber");
+            //extraemos el valor numerico de la caja
+            let numero = parseInt(cajanumber.value);
+            //contenido para el dibujo HTML
+            let contenido = "";
+            while(numero != 1){
+                if (numero % 2 == 0){
+                    numero = numero / 2;
+                }else{
+                    numero = numero * 3 + 1;
+                }
+                contenido += "<li>" + numero + "</li>";
+            }
+            listanumeros.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Conjetura de Collatz</h1>
+    Introduce un número: <input type="number" id="cajanumber"/>
+    <br/><br/>
+    <button onclick="generarCollatz()">
+        Collatz
+    </button>
+    <ul id="listanumeros"></ul>
+</body>
+</html>
