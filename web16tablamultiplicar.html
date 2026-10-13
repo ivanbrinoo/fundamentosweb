@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function tablademultiplicar(){
+            let tablamultiplicar = document.getElementById("tablamultiplicar");
+            let cajanumero = document.getElementById("cajanumero");
+            let contenido = "";
+            let numero = parseInt(cajanumero.value);
+            for (let i = 1; i <= 10; i++){
+                let operacion = numero * i;
+                contenido += "<li>" + operacion + "</li>";
+            }
+            tablamultiplicar.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Esta es la tabla de multiplicar del numero 9:</h1>
+    Introduce un número aqui: <input type="number" id="cajanumero"/>  
+    <ul id="tablamultiplicar">
+
+    </ul>
+    <button onclick="tablademultiplicar()">Resultado</button>
+    <p id="resultado">Resultado</p>
+</body>
+</html>
