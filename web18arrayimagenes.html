@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        function cambiarImagen(){
+            //recuperamos un array con todas las imagenes
+            let imagenes = document.getElementsByTagName("img");
+            //recorremos todas las imagenes, empezando en cero y terminando en length -1
+            // for (let i = 0; i < imagenes.length; i++){
+            //     //almacenamos cada img en una variable
+            //     //con la que estamos recorriendo
+            //     let img = imagenes[i];
+            //     //modificamos la imagen
+            //     img.src = "imagenes/imagen1.avif";
+            // }
+            for (let img of imagenes){
+                img.src = "imagenes/imagenapple3.png";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Array Imagenes</h1>
+    <button onclick="cambiarImagen()">Cambiar Imagen</button>
+    <br/><br/>
+    <img src="imagenes/logocabecera.avif"/>
+    <img src="imagenes/logocabecera.avif"/>
+    <img src="imagenes/logocabecera.avif"/>
+</body>
+</html>
