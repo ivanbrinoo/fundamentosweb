@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ejecutarBucleFor() {
+            let texto = "";
+            for (let i = 1; i <= 8; i++){
+                texto += i + ", ";
+            }
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = texto;
+        }
+        function ejecutarWhile(){
+            //estos bucles son iguales solo que la condicion
+            //que le pongamos no sabemos cuando se cumplira.
+            //para este bucle necesito una variable para la condicion.
+            let contador = 1;
+            //mientras que "contador" no llegue a 14
+            //hacemos instrucciones
+            let texto = "";
+            while(contador <= 14){
+                //guardamos en el texto el contador
+                texto += contador + ", ";
+                //modificaremos la variable de la condicion
+                contador += 1;
+            }
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = texto;
+        }
+    </script>
+</head>
+<body>
+    <h1>Sintaxis de bucles</h1>
+    <button onclick="ejecutarBucleFor()">Ejecutar bucle for: </button>
+    <br/><br/>
+    <button onclick="ejecutarWhile()">Ejecutar Bucle While: </button>
+    <p id="resultado">El resultado es: </p>
+</body>
+</body>
+</html>
