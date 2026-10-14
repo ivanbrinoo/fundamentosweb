@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function cargarcolores(){
+            let colores = ["red", "yellow", "green", "fuchsia", "blue"];
+            //buscamos el select llamado colores
+            let select = document.getElementById("selectcolores");
+            //declaramos el contenido HTML para el select
+            let contenido = "";
+            //recorremos los colores del array
+            for (let color of colores){
+                //agregamos el contenido de los option HTML
+                contenido += "<option>" + color + "</option>";
+
+            }
+            //escribimos dentro del select el contenido
+            select.innerHTML = contenido;
+        }
+        window.onload = function(){
+            cargarcolores();
+        }
+        function mostrarSeleccionado(){
+            //buscamos el select
+            let select = document.getElementById("selectcolores");
+            //guardamos en una variable el color seleccionado
+            let seleccionado = "";
+            let opciones = select.options;
+            //recorremos todos los options para ver cual esta seleccionado
+            for(let opcion of opciones){
+                if (opcion.selected){
+                    seleccionado = opcion.value;
+                }
+            }
+            //buscamos el titulo de resultado
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = "Color seleccionado: " + seleccionado;
+            resultado.style.color = seleccionado;
+        }
+    </script>
+</head>
+<body>
+    <h1>Colores select HTML</h1>
+    <select id="selectcolores"></select>
+    <button onclick="mostrarSeleccionado()">Mostrar Resultado</button>
+    <h2 id="resultado"></h2>
+</body>
+</html>
