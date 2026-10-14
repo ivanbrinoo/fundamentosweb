@@ -8,42 +8,47 @@
         img {
             width: 300px;
             height: 300px;
+            object-fit: cover;
+            margin: 5px;
         }
     </style>
     <script>
-        function seleccionarImagen(){
-            let Imagenes = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"];
+        // Arreglo modificado solo con las dos imágenes requeridas
+        let imagenes = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"];
+
+        // Llenamos el select al cargar la página
+        window.onload = function () {
             let select = document.getElementById("selectImagenes");
             let contenido = "";
-            for (let imagen of imagenes){
+            
+            for (let imagen of imagenes) {
+                contenido += "<option value='" + imagen + "'>" + imagen + "</option>";
+            }
+            
+            select.innerHTML = contenido;
 
+            // Opcional: Ejecuta la función una vez al inicio para que muestre la primera imagen por defecto
+            actualizarImagenes();
         }
-    }
-        window.onload = function (){
 
+        // Función que cambia el src de todos los elementos img
+        function actualizarImagenes(){
+            let select = document.getElementById("selectImagenes");
+            let imagenSeleccionada = select.value; 
+            
+            let todasLasImgs = document.getElementsByTagName("img");
+            
+            for (let img of todasLasImgs) {
+                img.src = "imagenes/" + imagenSeleccionada;
+            }
         }
-        //  function cargarcolores(){
-        //     let colores = ["red", "yellow", "green", "fuchsia", "blue"];
-        //     //buscamos el select llamado colores
-        //     let select = document.getElementById("selectcolores");
-        //     //declaramos el contenido HTML para el select
-        //     let contenido = "";
-        //     //recorremos los colores del array
-        //     for (let color of colores){
-        //         //agregamos el contenido de los option HTML
-        //         contenido += "<option>" + color + "</option>";
-
-        //     }
-        //     //escribimos dentro del select el contenido
-        //     select.innerHTML = contenido;
-        // }
     </script>
 </head>
 <body>
     <h1>Array con Imagenes</h1>
-    Seleccione una imagen: <select id="selectImagenes"></select>
-    <button onclick="seleccionarImagen()">Mostrar Imagen</button>
-    <br/>
+    <!-- Se añade 'onchange' para capturar el cambio al instante sin usar un botón -->
+    Seleccione una imagen: <select id="selectImagenes" onclick="actualizarImagenes()"></select>
+    <br/><br/>
     <img />
     <img />
     <img />
