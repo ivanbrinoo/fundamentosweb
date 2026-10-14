@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        function seleccionarImagen(){
+            let Imagenes = ["01.jpg", "02.jpg", "03.jpg", "04.jpg"];
+            let select = document.getElementById("selectImagenes");
+            let contenido = "";
+            for (let imagen of imagenes){
+
+        }
+    }
+        window.onload = function (){
+
+        }
+        //  function cargarcolores(){
+        //     let colores = ["red", "yellow", "green", "fuchsia", "blue"];
+        //     //buscamos el select llamado colores
+        //     let select = document.getElementById("selectcolores");
+        //     //declaramos el contenido HTML para el select
+        //     let contenido = "";
+        //     //recorremos los colores del array
+        //     for (let color of colores){
+        //         //agregamos el contenido de los option HTML
+        //         contenido += "<option>" + color + "</option>";
+
+        //     }
+        //     //escribimos dentro del select el contenido
+        //     select.innerHTML = contenido;
+        // }
+    </script>
+</head>
+<body>
+    <h1>Array con Imagenes</h1>
+    Seleccione una imagen: <select id="selectImagenes"></select>
+    <button onclick="seleccionarImagen()">Mostrar Imagen</button>
+    <br/>
+    <img />
+    <img />
+    <img />
+    <img />
+    <img />
+    <img />
+</body>
+</html>
