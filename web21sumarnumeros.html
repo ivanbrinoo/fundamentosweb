@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sumar(){
+            let cajas = document.getElementsByTagName("input");
+            let suma = 0;
+            for (let input of cajas){
+                console.log(input.value);
+                let numero = parseInt(input.value);
+                suma += numero;
+            }
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = "La suma es " + suma;
+        }
+    </script>
+</head>
+<body>
+    <h1>Sumar numeros HTML</h1>
+    Introduce el primer numero: <input type="number" id="numeroUno"/><br/><br/>
+    Introduce el segundo numero: <input type="number" id="numeroDos"/><br/><br/>
+    Introduce el tercer numero: <input type="number"id="numeroTres"/><br/><br/>
+    Introduce el cuarto numero: <input type="number"id="numeroCuatro"/><br/><br/>
+    <button onclick="sumar()">Sumar</button>
+    <h1 id="resultado"></h1>
+</body>
+</html>
