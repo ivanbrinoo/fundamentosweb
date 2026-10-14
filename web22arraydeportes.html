@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function mostrarFavoritos(){
+            let cajas = document.getElementsByTagName("input");
+            //Necesito ver el contenido de las cajas para saber
+            //cual de los checkbox esta "checked"
+            let favoritos = "";
+            //recorremos todas las cajas del input
+            for (let i = 0; i < cajas.length; i++){
+                if (cajas[i].type === "checkbox" && cajas[i].checked){
+                    favoritos += cajas[i].value + ", ";
+            }
+                document.getElementById("resultado").innerText = favoritos || "Ninguno seleccionado";
+                resultado.innerText = "Tus deportes favoritos son:" + favoritos ;
+        }
+    }
+    </script>
+</head>
+<body>
+    <h1>Deportes Favoritos:</h1>
+    <button onclick="mostrarFavoritos()">Ver Favoritos</button><br/><br/>
+    <input type="checkbox" value="Fútbol"/>Futbol <br/>
+    <input type="checkbox" value="Baloncesto"/>Baloncesto <br/>
+    <input type="checkbox" value="Voleibol"/>Voleibol <br/>
+    <input type="checkbox" value="Natación"/>Natación <br/>
+    <h2 id="resultado"></h2>
+</body>
+</html>
