@@ -9,7 +9,7 @@
         function crearMascota(){
             let cajanombre = document.getElementById("cajanombre");
             let cajaedad = document.getElementById("cajaedad");
-            let cajaraza = document.getElementById("cajaedad");
+            let cajaraza = document.getElementById("cajaraza");
 
             let mascota = new Object ();
                 mascota.nombre = cajanombre.value;
@@ -21,7 +21,17 @@
             titulonumero.innerText = "Numero de mascotas: " + arraymascotas.length;
         }
         function agregarMascota(){
-            
+            let filas = "";
+            for (mascota of arraymascotas){
+                filas += "<tr>";
+                    filas += "<td>" + mascota.nombre + "</td>";
+                    filas += "<td>" + mascota.raza + "</td>";
+                    filas += "<td>" + mascota.edad + "</td>";                    
+                filas += "</tr>";
+            }
+            let tabla = document.getElementById("tablaMascotas");
+            tabla.innerHTML = filas;
+
         }
     </script>
 </head>
