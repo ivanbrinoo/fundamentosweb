@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function generarMascota(){
+            let cajaraza = document.getElementById("razaMascota");
+            let cajanombre = document.getElementById("nombreMascota");
+            let cajaedad = document.getElementById("edadMascota");
+            let mascota = new Object();
+            mascota.raza = cajaraza.value;
+            mascota.nombre = cajanombre.value;
+            mascota.edad = cajaedad.value;
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = mascota.nombre + " es un " + mascota.raza + " y tiene " + mascota.edad + " años";
+        } 
+        function generarMascota2(){
+            let cajaraza = document.getElementById("razaMascota");
+            let cajanombre = document.getElementById("nombreMascota");
+            let cajaedad = document.getElementById("edadMascota");
+            let mascota = {
+                raza: cajaraza.value,
+                edad: cajaedad.value,
+                nombre: cajanombre.value
+            }
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = mascota.nombre + " es una " + mascota.raza + " y tiene " + mascota.edad + " años";
+        }
+    </script>
+</head>
+<body>
+    <h1>Objeto mascota</h1>
+    <h2 style="color:red" id="resultado"></h2>
+    Introduce el nombre de tu mascota: <input type="text" id="nombreMascota"><br/><br/>
+    Introduce la raza de tu mascota: <input type="text" id="razaMascota"><br/><br/>
+    Introduce la edad de tu mascota: <input type="text" id="edadMascota"><br/><br>
+    <button onclick="generarMascota()">Genera la mascota</button><br/><br/>
+    <button onclick="generarMascota2()">Genera la mascota 2</button>
+</body>
+</html>
