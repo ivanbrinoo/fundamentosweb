@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function mostrarMascotas(){
+            let arraymascotas = [];
+            let gato = new Object();
+                gato.nombre = "Garfield";
+                gato.raza =  "Gato";
+                gato.edad = 30;
+            let perro = new Object();
+                perro.nombre = "Johny";
+                perro.raza = "Perro";
+                perro.edad = "20";
+                arraymascotas.push (gato);
+                arraymascotas.push (perro);
+                let contenido = "";
+                for (let mascota of arraymascotas){
+                    contenido += "<li>" + mascota.nombre + "</li>";
+                }
+                let resultado = document.getElementById("resultado");
+                resultado.innerHTML = contenido;
+
+
+                //quiero dibujar las mascotas en una tabla HTML
+                let filas = "";
+                for (let mascotas of arraymascotas){
+                    filas += "<tr>";
+                    filas += "<td>" + mascotas.nombre + "</td>";
+                    filas += "<td>" + mascotas.raza + "</td>";
+                    filas += "<td>" + mascotas.edad + "</td>";
+                    filas += "</tr>";
+                }
+                let tabla = document.getElementById("tablaMascotas");
+                tabla.innerHTML = filas;
+
+
+
+
+        }
+    
+    </script>
+</head>
+<body>
+    <h1>Array con mascotas</h1>
+    <button onclick="mostrarMascotas()">Mostrar mascotas</button>
+    <ul id="resultado">
+    </ul>
+    <table id="tablaMascotas" border="1"></table>
+    <table border="1">
+        <tr>
+            <td>Garfield</td>
+            <td>Gato</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td>Johny</td>
+            <td>Perro</td>
+            <td>20</td>
+        </tr>
+    </table>
+</body>
+</html>
