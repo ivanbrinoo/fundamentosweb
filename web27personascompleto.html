@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let arraypersonas = [];
+        function crearPersona(){
+            let cajanombre = document.getElementById("cajanombre");
+            let cajaedad = document.getElementById("cajaemail");
+
+            let persona = new Object ();
+                persona.nombre = cajanombre.value;
+                persona.email = cajaemail.value;
+
+            arraypersonas.push(persona);
+            let titulonumero = document.getElementById("titulonumero");
+            titulonumero.innerText = "Numero de personas: " + arraypersonas.length;
+        }
+        function agregarPersona(){
+            let filas = "";
+            for (persona of arraypersonas){
+                filas += "<tr>";
+                    filas += "<td>" + persona.nombre + "</td>";
+                    filas += "<td>" + persona.email + "</td>";                    
+                filas += "</tr>";
+            }
+            let tabla = document.getElementById("tablaPersonas");
+            tabla.innerHTML = filas;
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Esto es un array de personas completo</h1>
+    <h3 style="color:fuchsia" id="titulonumero"></h3>
+    <button onclick="crearPersona()">Crear Persona</button>
+    <button onclick="agregarPersona()">Agregar Personas</button><br/><br/>
+    Introduce tu nombre: <input type="text" id="cajanombre"/><br/><br/>
+    Introduce el correo electronico: <input type="email" id="cajaemail"/><br/><br/>
+    <table border="1" id="tablaPersonas"></table>
+</body>
+</html>
