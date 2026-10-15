@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let arraymascotas = [];
+        function crearMascota(){
+            let cajanombre = document.getElementById("cajanombre");
+            let cajaedad = document.getElementById("cajaedad");
+            let cajaraza = document.getElementById("cajaedad");
+
+            let mascota = new Object ();
+                mascota.nombre = cajanombre.value;
+                mascota.edad = cajaedad.value;
+                mascota.raza = cajaraza.value;
+
+            arraymascotas.push(mascota);
+            let titulonumero = document.getElementById("titulonumero");
+            titulonumero.innerText = "Numero de mascotas: " + arraymascotas.length;
+        }
+        function agregarMascota(){
+            
+        }
+    </script>
+</head>
+<body>
+    <h1>Esto es un array de mascotas completo</h1>
+    <h3 style="color:fuchsia" id="titulonumero"></h3>
+    <button onclick="crearMascota()">Crear Mascota</button>
+    <button onclick="agregarMascota()">Agregar Mascota</button><br/><br/>
+    Introduce el nombre de tu mascota: <input type="text" id="cajanombre"/><br/><br/>
+    Introduce la raza de tu mascota: <input type="text" id="cajaraza"/><br/><br/>
+    Introduce la edad de tu mascota: <input type="number" id="cajaedad"/><br/><br/>
+    <table border="1" id="tablaMascotas"></table>
+</body>
+</html>
