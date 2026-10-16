@@ -10,6 +10,11 @@
             let respuesta = await fetch(ruta);
             let datos = await respuesta.json();
             console.log(datos);
+            let resultado = document.getElementById("resultado");
+            // let uno = datos.UNO;
+            // let dos = datos.DOS;
+            // resultado.innerHTML = uno + ", " + dos;
+            resultado.innerHTML = datos.UNO + ", " + datos.DOS + ", " + datos.TRES + ", ";
         }
 
     </script>
