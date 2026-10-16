@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       async function leerFicheroTexto(){
+            let ruta = "documents/notas.txt";
+            console.log("pidiendo datos");
+            let respuesta = await fetch(ruta);
+            console.log("Convirtiendo datos");
+            let datos = await respuesta.text();
+            console.log(datos);
+            console.log("Fin de lectura");
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = datos;
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Leer documento Texto Plano</h1>
+    <button onclick="leerFicheroTexto()">Leer texto plano</button>
+    <p id="resultado" style="color: red;"></p>
+</body>
+</html>
