@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            text-align: center;
+        }
+    </style>
+    <script>
+        async function mostrarComics(){
+            let ruta = "documents/comics.json";
+            let comics = await fetch(ruta);
+            let datos = await comics.json();
+            console.log(datos);
+            let contenido = "";
+            contenido += "<table border='1'>";
+            for(let cliente of datos){
+                contenido += `
+                    <tr>
+                        <td>${cliente.titulo}</td>
+                        <td>${cliente.descripcion}</td>
+                        <td><img src="${cliente.imagen}" width="250px"></td>
+                        
+                    </tr>
+                `
+            }
+            contenido += "</table>";
+            let resultado = document.getElementById("resultado");
+            resultado.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Esto es una pagina para ver los comics mas populares</h1>
+    <button onclick="mostrarComics()">Mostrar Comics</button>
+    <p id="resultado"></p>
+</body>
+</html>
