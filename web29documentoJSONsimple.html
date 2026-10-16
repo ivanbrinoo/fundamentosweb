@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function mostrarjsonsimple(){
+            let ruta = "documents/tareas.json";
+            let respuesta = await fetch(ruta);
+            let datos = await respuesta.json();
+            console.log(datos);
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Visualizando un documento JSON</h1>
+    <button onclick="mostrarjsonsimple()">Leer JSON</button>
+    <p id="resultado"></p>
+</body>
+</html>
