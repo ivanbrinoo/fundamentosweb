@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        async function leerjson(){
+            let ruta = "documents/clientes.json";
+            let respuesta = await fetch(ruta);
+            let datos = await respuesta.json();
+            let contenido = "";
+            console.log(datos);
+            for (let cliente of datos){
+                contenido += "<li>" + cliente.nombre + "</li>";
+            }
+            let listaclientes = document.getElementById("listaclientes");
+            listaclientes.innerHTML = contenido;
+        }
+    </script>
 </head>
 <body>
-    
+    <h1> Esto es un JSON completo</h1>
+    <button onclick="leerjson()">Leer JSON Completo</button>
+    <ul id="listaclientes"></ul>
 </body>
 </html>
