@@ -6,16 +6,24 @@
     <title>Document</title>
     <script>
         async function apicustomers(){
-            let ruta = "https://services.odata.org/V4/Northwind/Northwind.svc/Customers";
-            let respuesta = await fetch(ruta);
+            let url = "https://services.odata.org/V4/Northwind/Northwind.svc/Customers";
+            let respuesta = await fetch(url);
             let datos = await respuesta.json();
-
+            let lista = document.getElementById("listaclientes");
+            console.log(datos);
+            contenido = "";
+            for (let cliente of datos.value){
+                contenido += `
+                    <li> ${cliente.ContactName} </li>
+                `
+            }
+            lista.innerHTML = contenido;
         }
     </script>
 </head>
 <body>
-    <h1>API de Customers</h1>>
-    <button onclick="apicustomers()">API Customers</button>
+    <h1>API de Customers</h1>
+    <button onclick="apicustomers()">Servicio Customers</button>
     <ul id="listaclientes"></ul>
 </body>
 </html>
