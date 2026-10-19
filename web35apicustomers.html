@@ -15,6 +15,9 @@
             for (let cliente of datos.value){
                 contenido += `
                     <li> ${cliente.ContactName} </li>
+                    <li> ${cliente.Phone} </li>
+                    <li> ${cliente.Country} </li><br/><br/>
+                    
                 `
             }
             lista.innerHTML = contenido;
