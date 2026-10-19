@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        async function mostrarHeroes(){
+            let ruta = "documents/marvel.json";
+            let respuesta = await fetch(ruta);
+            let datosheroes = await respuesta.json();
+            let contenido = "";
+            for (let heroe of datosheroes.Heroes){
+                contenido += `
+                    <ul> Heroe: ${heroe.hero} </ul>
+                    <ul> Nombre del SuperHeroe: ${heroe.name} </ul>
+                    <ul><a href="${heroe.link}"> Link de la Página </a></ul>
+                    <img src="${heroe.img}">
+                    <br/><br/>
+                    `
+                    let resultado = document.getElementById("resultado");
+                    resultado.innerHTML = contenido;
+            }
+            
+        }
+        async function mostrarVillanos(){
+            let ruta = "documents/marvel.json";
+            let respuesta = await fetch(ruta);
+            let datosvillanos = await respuesta.json();
+            let contenido = "";
+            for (let villano of datosvillanos.Villains){
+                contenido += `
+                    <ul>Villano: ${villano.hero} </ul>
+                    <ul> Nombre del Villano: ${villano.name} </ul>
+                    <ul><a href="${villano.link}">Link de la Página</a></ul>
+                    <img src="${villano.img}">
+                `
+                let resultado = document.getElementById("resultado");
+                resultado.innerHTML = contenido;
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <h1>Esto es una pagina de Heroes y Villanos</h1>
+    <button onclick="mostrarHeroes()">Mostrar Heroes</button>
+    <button onclick="mostrarVillanos()">Mostrar Villanos</button>
+    <p id="resultado"></p>
+</body>
+</html>
