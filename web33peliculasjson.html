@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div {
+            color: red;
+        }
+    </style>
     <script>
         async function cargarpeliculas(){
             let ruta = "documents/cine.json";
@@ -28,7 +33,13 @@
             for (let peli of datos.Peliculas){
                 if(peli.Titulo == nombrepeli){
                     let resultado = document.getElementById("resultado");
-                    resultado.innerHTML = peli.Argumento;
+                    resultado.innerHTML = `
+                        <p> Titulo: ${peli.Titulo} </p>
+                        <p> Argumento: ${peli.Argumento} </p>
+                        <p> Fecha de estreno: ${peli.Fecha_Estreno} </p>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/${peli.Youtube}?si=PWgKmcCxGCMmZ3_3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        
+                    `
                 }
             }
         }
@@ -40,6 +51,6 @@
     <button onclick="cargarpeliculas()">Cargar peliculas</button>
     <button onclick="buscarPelicula()">Buscar Pelicula</button>
     <br/><br/>
-    <p id="resultado"></p>
+    <div id="resultado"></div>
 </body>
 </html>
