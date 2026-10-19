@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function apicustomers(){
+            let ruta = "https://services.odata.org/V4/Northwind/Northwind.svc/Customers";
+            let respuesta = await fetch(ruta);
+            let datos = await respuesta.json();
+
+        }
+    </script>
+</head>
+<body>
+    <h1>API de Customers</h1>>
+    <button onclick="apicustomers()">API Customers</button>
+    <ul id="listaclientes"></ul>
+</body>
+</html>
