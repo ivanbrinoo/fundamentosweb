@@ -15,7 +15,7 @@
             console.log(datos)
             for (let id of datos.value){
                 options += `
-                    <option> ${id.ContactName} </option>
+                    <option value="${id.SupplierID}"> ${id.ContactName} </option>
                 `
                 contenido += `
                     <ul> ID: ${id.SupplierID} </ul>
@@ -29,7 +29,7 @@
         }
         async function buscarSupplier(){
              // 1. Obtener el ID que escribió el usuario en el input y convertirlo a número
-            let idBuscado = parseInt(document.getElementById("idsupplier").value);
+            let idBuscado = parseInt(document.getElementById("selectsupplier").value);
             
             // 2. Hacer la petición a la API para traer todos los proveedores
             let respuesta = await fetch(url);
@@ -55,10 +55,9 @@
 </head>
 <body>
     <h1 style="color:blue">Suppliers V2</h1>
-    ID del supplier: <input type="number" id="idsupplier"><br/><br/>
     Selecciona un supplier: <select id="selectsupplier"></select><br/><br/>
     <button onclick="buscarSupplier()">Buscar Supplier</button>
-    <button onclick="supplier()">Supplier</button>
+    <button onclick="supplier()">Ver Supplier</button>
     <p id="resultado"></p>
 </body>
 </html>
