@@ -9,7 +9,15 @@
         async function empleados(){
             let respuesta = await fetch(url);
             let datos = await respuesta.json();
-            let contenido = "";
+            let contenido = `
+                <tr>
+                    <td style="font-weight: bold;">ID</td>
+                    <td style="font-weight: bold;">Apellido</td>
+                    <td style="font-weight: bold;">Puesto</td>
+                    <td style="font-weight: bold;">Salario</td>
+                    <td style="font-weight: bold;">Departamento</td>
+                </tr>
+            `;
             for (let empleado of datos)
                 contenido += `
                     <tr>
