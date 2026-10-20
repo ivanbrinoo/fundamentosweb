@@ -11,12 +11,18 @@
             let datos = await respuesta.json();
             let id = document.getElementById("idsupplier");
             let contenido = "";
+            let options = "";
             console.log(datos)
             for (let id of datos.value){
+                options += `
+                    <option> ${id.ContactName} </option>
+                `
                 contenido += `
                     <ul> ID: ${id.SupplierID} </ul>
                     <ul> Nombre de Contacto: ${id.ContactName} </ul>
                 `
+                let select = document.getElementById("selectsupplier");
+                select.innerHTML = options;
                 let mostrar = document.getElementById("resultado");
                 mostrar.innerHTML = contenido;
             }
@@ -48,8 +54,9 @@
     </script>
 </head>
 <body>
-    <h1>Suppliers</h1>
-    ID del supplier: <input type="number" id="idsupplier">
+    <h1 style="color:blue">Suppliers V2</h1>
+    ID del supplier: <input type="number" id="idsupplier"><br/><br/>
+    Selecciona un supplier: <select id="selectsupplier"></select><br/><br/>
     <button onclick="buscarSupplier()">Buscar Supplier</button>
     <button onclick="supplier()">Supplier</button>
     <p id="resultado"></p>
