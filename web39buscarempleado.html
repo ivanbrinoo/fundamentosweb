@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let url = "https://apiempleadosfullstack.azurewebsites.net/api/Empleados"
+        async function empleados(){
+            let respuesta = await fetch(url);
+            let datos = await respuesta.json();
+            let contenido = "";
+            for (let empleado of datos)
+                contenido += `
+                    <tr>
+                        <td> ${empleado.idEmpleado} </td>    
+                        <td> ${empleado.apellido} </td>
+                        <td> ${empleado.oficio} </td>
+                        <td> ${empleado.salario} </td>
+                        <td> ${empleado.departamento} </td>
+                    </tr>
+                `
+                let mostrar = document.getElementById("respuesta");
+                mostrar.innerHTML = contenido;
+        }
+        async function buscarEmpleados(){
+            let respuesta = await fetch(url);
+            let datos = await respuesta.json();
+            let contenido = "";
+            let cajaempleado = parseInt(document.getElementById("cajaid").value)
+            for (let empleado of datos){
+                if (cajaempleado == empleado.idEmpleado)
+                    contenido += `
+                        <p> ID: ${empleado.idEmpleado} </p>
+                        <p> Apellido: ${empleado.apellido} </p>
+                        <p> Salario: ${empleado.salario} </p>
+                    `
+            }
+            let mostrar = document.getElementById("datosempleado");
+            mostrar.innerHTML = contenido;
+        }
+    </script>
+    <style>
+        table{
+            padding: 12px;
+            border-radius: 12px;
+        }
+        td{
+            width: 100px;
+            border-collapse: separate;
+            text-align: center;
+            padding: 12px;
+            border: 0px;
+        }
+        button{
+            width: 100px;
+            height: 40px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Esta es la pagina de la API empleados</h1>
+    <br/>
+    Introduce el ID del empleado: <input type="number" id="cajaid"><br/><br/>
+    <button onclick="empleados()">Empleados</button>
+    <br/>
+    <button onclick="buscarEmpleados()">Buscar Empleados</button>
+    <table border="1px" id="respuesta"></table>
+    <div id="datosempleado"></div>
+</body>
+</html>
