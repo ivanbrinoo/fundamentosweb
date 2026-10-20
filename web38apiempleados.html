@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function empleados(){
+            let url = "https://apiempleadosfullstack.azurewebsites.net/api/Empleados"
+            let respuesta = await fetch(url);
+            let datos = await respuesta.json();
+            let contenido = "";
+            for (let empleado of datos)
+                contenido += `
+                    <tr>
+                        <td> ${empleado.idEmpleado} </td>    
+                        <td> ${empleado.apellido} </td>
+                        <td> ${empleado.oficio} </td>
+                        <td> ${empleado.salario} </td>
+                        <td> ${empleado.departamento} </td>
+                    </tr>
+                `
+                let mostrar = document.getElementById("respuesta");
+                mostrar.innerHTML = contenido;
+        }
+    </script>
+    <style>
+        table{
+            padding-left: 10px;
+            border-radius: 12px;
+        }
+        td{
+            width: 100px;
+            border-collapse: separate;
+            text-align: center;
+            padding: 12px;
+            border: 0px;
+        }
+        button{
+            width: 100px;
+            height: 30px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Esta es la pagina de la API empleados</h1>
+    <br/>
+    <button onclick="empleados()">Empleados</button>
+    <table border="1px" id="respuesta">
+
+    </table>
+</body>
+</html>
