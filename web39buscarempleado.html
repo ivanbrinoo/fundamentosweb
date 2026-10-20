@@ -29,12 +29,13 @@
             let contenido = "";
             let cajaempleado = parseInt(document.getElementById("cajaid").value)
             for (let empleado of datos){
-                if (cajaempleado == empleado.idEmpleado)
+                if (cajaempleado == empleado.idEmpleado){
                     contenido += `
                         <p> ID: ${empleado.idEmpleado} </p>
                         <p> Apellido: ${empleado.apellido} </p>
                         <p> Salario: ${empleado.salario} </p>
                     `
+                }
             }
             let mostrar = document.getElementById("datosempleado");
             mostrar.innerHTML = contenido;
