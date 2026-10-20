@@ -14,12 +14,12 @@
             console.log(datos)
             for (let id of datos.value){
                 contenido += `
-                    <ul> ${id.SupplierID} </ul>
-                    <ul> ${id.ContactName} </ul>
+                    <ul> ID: ${id.SupplierID} </ul>
+                    <ul> Nombre de Contacto: ${id.ContactName} </ul>
                 `
+                let mostrar = document.getElementById("resultado");
+                mostrar.innerHTML = contenido;
             }
-            let mostrar = document.getElementById("resultado");
-            mostrar.innerHTML = contenido;
         }
         async function buscarSupplier(){
              // 1. Obtener el ID que escribió el usuario en el input y convertirlo a número
@@ -36,12 +36,13 @@
                 // 4. El "if" evalúa si el SupplierID actual coincide con el ID que buscas
                 if (sup.SupplierID === idBuscado) {
                     contenido = `
-                        <ul><strong>ID:</strong> ${sup.SupplierID}</ul>
-                        <ul><strong>Nombre de Contacto:</strong> ${sup.ContactName}</ul>
-                        <ul><strong>Empresa:</strong> ${sup.CompanyName}</ul>
+                        <ul>ID: ${sup.SupplierID}</ul>
+                        <ul>Nombre de Contacto: ${sup.ContactName}</ul>
                     `;
-                    break; // Rompe el bucle una vez que lo encuentra
+                    
                 }
+                let mostrar = document.getElementById("resultado");
+                mostrar.innerHTML = contenido;
         }
     }   
     </script>
