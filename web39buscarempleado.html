@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        let url = "https://apiempleadosfullstack.azurewebsites.net/api/Empleados"
+        
         async function empleados(){
+            let url = "https://apiempleadosfullstack.azurewebsites.net/api/Empleados"
             let respuesta = await fetch(url);
             let datos = await respuesta.json();
             let contenido = `
@@ -32,21 +33,40 @@
                 mostrar.innerHTML = contenido;
         }
         async function buscarEmpleados(){
-            let respuesta = await fetch(url);
-            let datos = await respuesta.json();
-            let contenido = "";
-            let cajaempleado = parseInt(document.getElementById("cajaid").value)
-            for (let empleado of datos){
-                if (cajaempleado == empleado.idEmpleado){
-                    contenido += `
-                        <p> ID: ${empleado.idEmpleado} </p>
-                        <p> Apellido: ${empleado.apellido} </p>
-                        <p> Salario: ${empleado.salario} </p>
-                    `
-                }
-            }
-            let mostrar = document.getElementById("datosempleado");
-            mostrar.innerHTML = contenido;
+            // let respuesta = await fetch(url);
+            // let datos = await respuesta.json();
+            // let contenido = "";
+            // let cajaempleado = parseInt(document.getElementById("cajaid").value)
+            // for (let empleado of datos){
+            //     if (cajaempleado == empleado.idEmpleado){
+            //         contenido += `
+            //             <p> ID: ${empleado.idEmpleado} </p>
+            //             <p> Apellido: ${empleado.apellido} </p>
+            //             <p> Salario: ${empleado.salario} </p>
+            //         `
+            //     }
+            // }
+            // let mostrar = document.getElementById("datosempleado");
+            // mostrar.innerHTML = contenido;
+            //BUSCAMOS LA CAJA DONDE TENEMOS EL ID
+            let cajaid = document.getElementById("cajaid");
+            //recuperamos el ID del empleado que esta en la cajaid
+            let idempleado = cajaid.value; //7839
+            let url = 
+            `https://apiempleadosfullstack.azurewebsites.net/api/Empleados/${idempleado}`
+            //realizamos la petición al servicio
+            let response = await fetch(url);
+            //convertimos los datos a json
+            let datos = await response.json();
+            //ya tenemos al empleado en datos, simplemente dibujamos
+            //buscamos el div del html
+            let div = document.getElementById("datosempleado");
+            //realizamos el dibujo
+            div.innerHTML = `
+                <p> Apellido: ${datos.apellido} </p>
+                <p> Puesto de trabajo: ${datos.oficio} </p>
+                <p> Salario: ${datos.salario} </p>
+            `
         }
     </script>
     <style>
