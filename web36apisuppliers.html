@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let url ="https://services.odata.org/V4/Northwind/Northwind.svc/Suppliers";
+        async function supplier(){            
+            let respuesta = await fetch(url);
+            let datos = await respuesta.json();
+            let id = document.getElementById("idsupplier");
+            let contenido = "";
+            console.log(datos)
+            for (let id of datos.value){
+                contenido += `
+                    <ul> ${id.SupplierID} </ul>
+                    <ul> ${id.ContactName} </ul>
+                `
+            }
+            let mostrar = document.getElementById("resultado");
+            mostrar.innerHTML = contenido;
+        }
+        async function buscarSupplier(){
+             // 1. Obtener el ID que escribió el usuario en el input y convertirlo a número
+            let idBuscado = parseInt(document.getElementById("idsupplier").value);
+            
+            // 2. Hacer la petición a la API para traer todos los proveedores
+            let respuesta = await fetch(url);
+            let datos = await respuesta.json();
+            
+            let contenido = "Proveedor no encontrado"; // Mensaje por defecto si no hay coincidencia
+            
+            // 3. Recorrer los proveedores con un bucle
+            for (let sup of datos.value){
+                // 4. El "if" evalúa si el SupplierID actual coincide con el ID que buscas
+                if (sup.SupplierID === idBuscado) {
+                    contenido = `
+                        <ul><strong>ID:</strong> ${sup.SupplierID}</ul>
+                        <ul><strong>Nombre de Contacto:</strong> ${sup.ContactName}</ul>
+                        <ul><strong>Empresa:</strong> ${sup.CompanyName}</ul>
+                    `;
+                    break; // Rompe el bucle una vez que lo encuentra
+                }
+        }
+    }   
+    </script>
+</head>
+<body>
+    <h1>Suppliers</h1>
+    ID del supplier: <input type="number" id="idsupplier">
+    <button onclick="buscarSupplier()">Buscar Supplier</button>
+    <button onclick="supplier()">Supplier</button>
+    <p id="resultado"></p>
+</body>
+</html>
