@@ -27,8 +27,11 @@
             let datos = await respuesta.json();
             let contenido = document.getElementById("respuesta");
             contenido.innerHTML = `
-                <p> ${datos.apellido} </p>
-                <p> ${datos.oficio} </p>
+                <p> ID: ${datos.idEmpleado} </p>
+                <p> Apellido: ${datos.apellido} </p>
+                <p> Oficio: ${datos.oficio} </p>
+                <p> Salario: ${datos.salario} </p>
+                <p> Departamento: ${datos.departamento} </p>
             `
         }
     </script>
