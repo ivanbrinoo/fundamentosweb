@@ -13,9 +13,11 @@
             let contenido = "";
             for (let persona of datos){
                 contenido += `
-                    <p> Apellido: ${persona.apellido} </p>
-                    <p> Funcion de la persona: ${persona.funcion} </p>
                     <p> ID del empleado: ${persona.idEmpleado} </p>
+                    <p> Apellido del empleado: ${persona.apellido} </p>
+                    <p> Puesto del empleado: ${persona.funcion} </p>
+                    <p> Turno del empleado: ${persona.turno} </p>
+                    <p> Salario del empleado: ${persona.salario} </p>
                     <br/><br/>
                 `
                 let mostrar = document.getElementById("resultado");
@@ -30,26 +32,41 @@
             let contenido = "";
             for (let funcion of datos)
                 contenido += `
-                    <p> ID del empleado: ${funcion.idEmpleado} </p>
-                    <p> Apellido del empleado: ${funcion.apellido} </p>
-                    <p> Puesto del empleado: ${funcion.funcion} </p>
-                    <p> Turno del empleado: ${funcion.turno} </p>
-                    <p> Salario del empleado: ${funcion.salario} </p>
+                    <p style="color: blue"> ID del empleado: ${funcion.idEmpleado} </p>
+                    <p style="color: blue"> Apellido del empleado: ${funcion.apellido} </p>
+                    <p style="color: blue"> Puesto del empleado: ${funcion.funcion} </p>
+                    <p style="color: blue"> Turno del empleado: ${funcion.turno} </p>
+                    <p style="color: blue"> Salario del empleado: ${funcion.salario} </p>
                     <br/><br/>
                     
                 `
                 let show = document.getElementById("resultado");
                 show.innerHTML = contenido;
         }
+        async function mostrarDesplegable(){
+            let ruta = url + "api/Plantilla"
+            let respuesta = await fetch(ruta);
+            let datos = await respuesta.json();
+            let contenido = "";
+            for (let persona of datos){
+                contenido += `
+                    <option> ${persona.apellido} </option>
+                    <br/><br/>
+                `
+                let mostrar = document.getElementById("desplegable");
+                mostrar.innerHTML = contenido;
+        }
+    }
     </script>
 </head>
 <body>
     <h1>Esto es el encabezado de la pagina web de API de Plantillas</h1>
     Escribe el nombre de la funcion <input type="text" id="funcion">
-    <select id="select"></select>
+    <select id="desplegable"></select>
     <br/><br/>
     <button onclick="cargarPlantilla()">Cargar Plantilla</button>
     <button onclick="escribirFuncion()">Escribir Funcion</button>
+    <button onclick="mostrarDesplegable()">Mostrar Desplegable</button>
     <div id="resultado">
 
     </div>
