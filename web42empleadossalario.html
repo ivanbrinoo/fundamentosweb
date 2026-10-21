@@ -12,8 +12,7 @@
             let ruta = url + "api/Empleados/EmpleadosSalario/" + salarioMinimo;
             console.log(ruta);
             let respuesta = await fetch(ruta);
-            let datos = await respuesta.json();
-            
+            let datos = await respuesta.json();            
             let contenido = "";
             for (let empleado of datos){
                 if (empleado.salario > salarioMinimo){
