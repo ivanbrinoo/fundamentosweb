@@ -5,29 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        let url = "https://apiempleadosfullstack.azurewebsites.net/";
         async function mostrarApellidos(){
-            let apellidos = document.getElementById("cajaselect");
-            let cajaapellidos = apellidos.value;
-            let url = `https://apiempleadosfullstack.azurewebsites.net/api/Empleados`
-            let respuesta = await fetch(url);
+            let peticion = url + "api/Empleados";
+            let respuesta = await fetch(peticion);
             let datos = await respuesta.json();
             let contenido = "";
             for (let apellido of datos)
                 contenido += `
-                <option>${apellido.apellido} </option>
+                <option value="${apellido.idEmpleado}">${apellido.apellido} </option>
             `
             let mostrar = document.getElementById("cajaselect")
             mostrar.innerHTML = contenido;
         }
         async function buscarEmpleado(){
-            let url = `https://apiempleadosfullstack.azurewebsites.net/api/Empleados/`
+            let apellidos = document.getElementById("cajaselect").value;
+            let peticion = url + "api/Empleados/" + apellidos;
+            console.log(peticion);
+            //fetch devuelve una
+            let respuesta = await fetch(peticion);
+            let datos = await respuesta.json();
+            let contenido = document.getElementById("respuesta");
+            contenido.innerHTML = `
+                <p> ${datos.apellido} </p>
+                <p> ${datos.oficio} </p>
+            `
         }
     </script>
 </head>
 <body>
     <h1>Seleccionar empleado con API</h1>
     <select id="cajaselect">Apellidos</select>
-    <button onclick="mostrarApellidos()">Apellidos</button>
+    <button onclick="mostrarApellidos()">Cargar Apellidos</button>
     <button onclick="buscarEmpleado()">Buscar empleado</button>
     <div id="respuesta"></div>
 </body>
