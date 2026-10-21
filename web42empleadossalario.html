@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let url = "https://apiempleadosfullstack.azurewebsites.net/"
+        async function buscarSalario(){
+            let ruta = url + "api/Empleados"
+            let respuesta = await fetch(ruta);
+            let datos = await respuesta.json();
+            let salarioMinimo = parseInt(document.getElementById("salario").value);
+            let contenido = "";
+            for (let empleado of datos){
+                if (empleado.salario > salarioMinimo){
+                contenido += `
+                    <li> ${empleado.salario} </li>
+                `
+                }
+            }
+                let mostrar = document.getElementById("listasalario");
+                mostrar.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Esta es la cabecera de la web de empleados y salario</h1>
+    Introduce el salario: <input type="text" id="salario">
+    <button onclick="buscarSalario()">Buscar Salario</button>
+    <ul id="listasalario"></ul>
+</body>
+</html>
