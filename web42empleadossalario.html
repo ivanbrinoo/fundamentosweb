@@ -7,10 +7,13 @@
     <script>
         let url = "https://apiempleadosfullstack.azurewebsites.net/"
         async function buscarSalario(){
-            let ruta = url + "api/Empleados"
+            
+            let salarioMinimo = document.getElementById("salario").value;
+            let ruta = url + "api/Empleados/EmpleadosSalario/" + salarioMinimo;
+            console.log(ruta);
             let respuesta = await fetch(ruta);
             let datos = await respuesta.json();
-            let salarioMinimo = parseInt(document.getElementById("salario").value);
+            
             let contenido = "";
             for (let empleado of datos){
                 if (empleado.salario > salarioMinimo){
