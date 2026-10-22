@@ -14,19 +14,33 @@
             for (persona of datos)
                 contenido += `
                 <tr>
-                    <td> Numero: ${persona.numero} </td>
-                    <td> Nombre: ${persona.nombre} </td>
-                    <td> Localidad: ${persona.localidad} </td>
+                    <td> ${persona.numero} </td>
+                    <td> ${persona.nombre} </td>
+                    <td> ${persona.localidad} </td>
                 </tr>
                 `
                 let mostrar = document.getElementById("lista")
                 mostrar.innerHTML = contenido;
         }
+        async function borrarDepartamentos(){
+            let cajaid = document.getElementById("cajaid");
+            let ruta = url + "api/Departamentos/" + cajaid.value;
+            let respuesta = await fetch(ruta,{
+                "method" : "DELETE"
+
+            })
+            mostrarDepartamentos();
+
+
+        }
     </script>
 </head>
 <body>
     <h1>Cargar lista de departamentos</h1>
+    Introduce el ID del departamento a borrar: <input type="number" id="cajaid"><br/><br/>
     <button onclick="mostrarDepartamentos()">Mostrar Departamentos</button>
+    <button onclick="borrarDepartamentos()">Borrar Departamentos</button>
     <table id="lista" border="1px"></table>
+    <div id="respuestaborrar"></div>
 </body>
 </html>
