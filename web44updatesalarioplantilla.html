@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        let url = "https://apiplantillacore.azurewebsites.net/"
         async function incrementarSalario(){
-
+            let cajafuncion = document.getElementById("cajafuncion").value;
+            let cajaincremento = document.getElementById("cajaincremento").value;
+            let ruta = `${url}api/Plantilla/${cajafuncion}/${cajaincremento}`;
+            let respuesta = await fetch(ruta, {
+                "method": "PUT",
+            });
+            console.log(respuesta);
+            // let datos = await respuesta.json();
+            let mostrar = document.getElementById("mensaje");
+            mostrar.innerText = "Datos actualizados";
         }
     </script>
 </head>
 <body>
     <h1>Esto es la cabecera para aprender a como sumarle numeros a un "salario"</h1>
-    Introduzca el salario: <input type="number" id="salarioinicial"><br/>
-    Introduzca el incremento: <input type="number" id="salarioincremento"><br/>
+    <a href="web43plantilla.html">Ir a plantilla</a><br/>
+    Introduzca el salario: <input type="text" id="cajafuncion"><br/>
+    Introduzca el incremento: <input type="number" id="cajaincremento"><br/>
     <button onclick="incrementarSalario()">Incrementar Salarios</button>
+    <h2 id="mensaje"></h2>
 </body>
 </html>
