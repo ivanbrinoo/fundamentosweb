@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
         let url = "https://apicruddepartamentoscore.azurewebsites.net/";
-        async function insertarDepartamento(){
-            let ruta  = url + "/api/Departamentos";
-            
+        async function insertarDepartamento() {
+            let ruta = url + "api/Departamentos";
+            let numerocaja = document.getElementById("numerodepartamento");
+            let nombrecaja = document.getElementById("nombre");
+            let localidadcaja = document.getElementById("localidad");
+            let nuevo = {
+                "numero": parseInt(numerocaja.value),
+                "nombre": nombrecaja.value,
+                "localidad": localidadcaja.value
+            }
+            let data = JSON.stringify(nuevo);
+            let respuesta = await fetch(ruta, {
+                "method": "POST",
+                "body": data,
+                "headers": {
+                    "Content-type": "application/json"
+                }
+            })
+            alert("Todo OK")
         }
     </script>
 </head>
+
 <body>
     <h1>Insertar Departamento</h1>
+    Introduce el numero del departamento: <input type="text" id="numerodepartamento"><br/>
+    Introduce el nombre: <input type="text" id="nombre"><br/>
+    Introduce la localidad: <input type="text" id="localidad">
     <button onclick="insertarDepartamento()">Insertar</button>
 </body>
+
 </html>
