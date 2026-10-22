@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let url = "https://apicruddepartamentoscore.azurewebsites.net/";
+        async function mostrarDepartamentos() {
+            let ruta = url + "api/Departamentos";
+            let respuesta = await fetch(ruta);
+            let datos = await respuesta.json();
+            let contenido = "";
+            for (persona of datos)
+                contenido += `
+                    <li> Numero: ${persona.numero} </li>
+                    <li> Nombre: ${persona.nombre} </li>
+                    <li> Localidad: ${persona.localidad} </li>
+                    <br/><br/>
+                `
+                let mostrar = document.getElementById("lista")
+                mostrar.innerHTML = contenido;
+        }
+    </script>
+</head>
+<body>
+    <h1>Cargar lista de departamentos</h1>
+    <button onclick="mostrarDepartamentos()">Mostrar Departamentos</button>
+    <ul id="lista"></ul>
+</body>
+</html>
