@@ -13,10 +13,11 @@
             let contenido = "";
             for (persona of datos)
                 contenido += `
-                    <li> Numero: ${persona.numero} </li>
-                    <li> Nombre: ${persona.nombre} </li>
-                    <li> Localidad: ${persona.localidad} </li>
-                    <br/><br/>
+                <tr>
+                    <td> Numero: ${persona.numero} </td>
+                    <td> Nombre: ${persona.nombre} </td>
+                    <td> Localidad: ${persona.localidad} </td>
+                </tr>
                 `
                 let mostrar = document.getElementById("lista")
                 mostrar.innerHTML = contenido;
@@ -26,6 +27,6 @@
 <body>
     <h1>Cargar lista de departamentos</h1>
     <button onclick="mostrarDepartamentos()">Mostrar Departamentos</button>
-    <ul id="lista"></ul>
+    <table id="lista" border="1px"></table>
 </body>
 </html>
