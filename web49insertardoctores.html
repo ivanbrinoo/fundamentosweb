@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        
+        async function insertarDoctores(){
+            let ruta = "https://apicruddoctores.azurewebsites.net/api/Doctores/";
+            let doctor = {
+                "idDoctor" : parseInt(document.getElementById("iddoctor").value),
+                "idHospital" : parseInt(document.getElementById("idhospital").value),
+                "apellido" : document.getElementById("apellido").value,
+                "especialidad" : document.getElementById("especialidad").value,
+                "salario" : parseInt(document.getElementById("salario").value),
+            }
+            let data = JSON.stringify(doctor);
+
+            let respuesta = await fetch(ruta, {
+                "method" : "POST",
+                "body" : data,
+                "headers" : {
+                    "Content-Type": "application/json"
+                }
+            });
+            alert ("Todo OK");
+        }
+    </script>
+</head>
+<body>
+    <h1>Insertar Doctores</h1>
+    Ingrese el ID del doctor: <input type="text" id="iddoctor"/><br/>
+    Ingrese el ID del hospital: <input type="text" id="idhospital"/><br/>
+    Ingrese el apellido del doctor: <input type="text" id="apellido"><br/>
+    Ingrese la especialidad del doctor: <input type="text" id="especialidad"/><br/>
+    Ingrese el salario: <input type="text" id="salario"><br/>
+    <button onclick="insertarDoctores()">Insertar Doctores</button>
+</body>
+</html>
