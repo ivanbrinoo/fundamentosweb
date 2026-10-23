@@ -90,7 +90,3 @@ let url = "https://apicruddoctores.azurewebsites.net/";
             })
             cargarDoctores();
         }
-
-        window.onload = function() {
-            cargarDoctores();
-        }
