@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        
+        let url = "https://apicruddoctores.azurewebsites.net/"
         async function insertarDoctores(){
-            let ruta = "https://apicruddoctores.azurewebsites.net/api/Doctores/";
+            let ruta = url + "api/Doctores";
             let doctor = {
                 "idDoctor" : parseInt(document.getElementById("iddoctor").value),
                 "idHospital" : parseInt(document.getElementById("idhospital").value),
@@ -25,6 +25,26 @@
                 }
             });
             alert ("Todo OK");
+            cargarDoctores();
+        }
+        async function cargarDoctores(){
+            let ruta = url + "api/doctores";
+            let respuesta = await fetch(ruta);
+            let datos = await respuesta.json();
+            let contenido = "";
+            for (doctor of datos){
+                contenido += `
+                    <tr>
+                        <td> ${doctor.idDoctor} </td>
+                        <td> ${doctor.idHospital} </td>
+                        <td> ${doctor.apellido} </td>
+                        <td> ${doctor.especialidad} </td>
+                        <td> ${doctor.salario} </td>
+                    </tr>
+                `
+            }
+            let mostrar = document.getElementById("tabladoctores");
+            mostrar.innerHTML = contenido;
         }
     </script>
 </head>
@@ -36,5 +56,7 @@
     Ingrese la especialidad del doctor: <input type="text" id="especialidad"/><br/>
     Ingrese el salario: <input type="text" id="salario"><br/>
     <button onclick="insertarDoctores()">Insertar Doctores</button>
+    <button onclick="cargarDoctores()">Cargar Doctores</button>
+    <table id="tabladoctores" border="1"></table>
 </body>
 </html>
