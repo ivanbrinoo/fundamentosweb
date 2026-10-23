@@ -5,35 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        let url = "https://apicruddoctores.azurewebsites.net/"
-        async function insertarDoctores(){
-            let ruta = url + "api/Doctores";
-            let doctor = {
-                "idDoctor" : parseInt(document.getElementById("iddoctor").value),
-                "idHospital" : parseInt(document.getElementById("idhospital").value),
-                "apellido" : document.getElementById("apellido").value,
-                "especialidad" : document.getElementById("especialidad").value,
-                "salario" : parseInt(document.getElementById("salario").value),
-            }
-            let data = JSON.stringify(doctor);
+        let url = "https://apicruddoctores.azurewebsites.net/";
+        async function insertarDoctor() {
+            let cajaid = document.getElementById("cajaid");
+            let cajahospital = document.getElementById("cajahospital");
+            let cajaapellido = document.getElementById("cajaapellido");
+            let cajaespecialidad = document.getElementById("cajaespecialidad");
+            let cajasalario = document.getElementById("cajasalario");
 
-            let respuesta = await fetch(ruta, {
-                "method" : "POST",
-                "body" : data,
-                "headers" : {
-                    "Content-Type": "application/json"
+            let nuevo = {
+                "idDoctor": parseInt(cajaid.value), 
+                "idHospital": parseInt(cajahospital.value),
+                "apellido": cajaapellido.value,
+                "especialidad": cajaespecialidad.value,
+                "salario": parseInt(cajasalario.value)
+            }
+            let request = url + "api/doctores";
+            //convertimos a json el objeto nuevo
+            let data = JSON.stringify(nuevo);
+            //realizamos la peticion
+            let response = await fetch(request, {
+                "method": "POST",
+                "body": data,
+                "headers": {
+                    "Content-type": "application/json"
                 }
-            });
+            })
             cargarDoctores();
         }
+        
         async function cargarDoctores(){
-            let ruta = url + "api/Doctores";
-            console.log(ruta);
-            let respuesta = await fetch(ruta);
-            let datos = await respuesta.json();
-            let contenido = "";
-            for (doctor of datos){
-                contenido += `
+            //construimos la peticion
+            let request = url + "api/doctores";
+            //realizamos la peticion
+            let response = await fetch(request);
+            //convertimos los datos de respuesta a json
+            let datos = await response.json();
+            let filas = "";
+            //recorremos cada doctor de datos
+            for (let doctor of datos){
+                //dibujamos las filas de la tabla
+                filas += `
                     <tr>
                         <td> ${doctor.idDoctor} </td>
                         <td> ${doctor.idHospital} </td>
@@ -43,58 +55,64 @@
                     </tr>
                 `
             }
-            let mostrar = document.getElementById("tabladoctores");
-            mostrar.innerHTML = contenido;
+            //buscamos la tabla en html
+            let tabla = document.getElementById("tabladoctores");
+            tabla.innerHTML = filas;
         }
+
         async function modificarDoctor() {
-            let ruta = url + "api/Doctores";
-            let doctor = {
-                "idDoctor" : parseInt(document.getElementById("iddoctor").value),
-                "idHospital" : parseInt(document.getElementById("idhospital").value),
-                "apellido" : document.getElementById("apellido").value,
-                "especialidad" : document.getElementById("especialidad").value,
-                "salario" : parseInt(document.getElementById("salario").value),
+            let cajaid = document.getElementById("cajaid");
+            let cajahospital = document.getElementById("cajahospital");
+            let cajaapellido = document.getElementById("cajaapellido");
+            let cajaespecialidad = document.getElementById("cajaespecialidad");
+            let cajasalario = document.getElementById("cajasalario");
+
+            let nuevo = {
+                "idDoctor": parseInt(cajaid.value), 
+                "idHospital": parseInt(cajahospital.value),
+                "apellido": cajaapellido.value,
+                "especialidad": cajaespecialidad.value,
+                "salario": parseInt(cajasalario.value)
             }
-            let respuesta = await fetch(ruta, {
-                "method" : "PUT",
-                "body" : JSON.stringify(doctor),
-                "headers" : {
-                    "content-type" : "application/json"
+            let request = url + "api/doctores";
+            //convertimos a json el objeto nuevo
+            let data = JSON.stringify(nuevo);
+            //realizamos la peticion
+            let response = await fetch(request, {
+                "method": "PUT",
+                "body": data,
+                "headers": {
+                    "Content-type": "application/json"
                 }
             })
             cargarDoctores();
         }
-        async function eliminarDoctor(){
-            let ruta = url + "api/Doctores"
-            let doctor = {
-                "idDoctor" : parseInt(document.getElementById("iddoctor").value),
-                "idHospital" : parseInt(document.getElementById("idhospital").value),
-                "apellido" : document.getElementById("apellido").value,
-                "especialidad" : document.getElementById("especialidad").value,
-                "salario" : parseInt(document.getElementById("salario").value),
-            }
-            let respuesta = await fetch(ruta, {
-                "method" : "DELETE",
-                "body" : JSON.stringify(doctor),
-                "headers" : {
-                    "Content-Type": "application/json"
-                }
+
+        async function eliminarDoctor() {
+            let cajaid = document.getElementById("cajaid");
+            let iddoctor = cajaid.value;
+            let request = url + "api/doctores/" + iddoctor;
+            let response = await fetch(request, {
+                "method": "DELETE"
             })
+            cargarDoctores();
+        }
+
+        window.onload = function() {
             cargarDoctores();
         }
     </script>
 </head>
 <body>
-    <h1>Insertar Doctores</h1>
-    Ingrese el ID del doctor: <input type="text" id="iddoctor"/><br/>
-    Ingrese el ID del hospital: <input type="text" id="idhospital"/><br/>
-    Ingrese el apellido del doctor: <input type="text" id="apellido"><br/>
-    Ingrese la especialidad del doctor: <input type="text" id="especialidad"/><br/>
-    Ingrese el salario: <input type="text" id="salario"><br/>
-    <button onclick="insertarDoctores()">Insertar Doctores</button>
-    <button onclick="cargarDoctores()">Cargar Doctores</button>
-    <button onclick="modificarDoctor()">Modificar Doctor</button>
-    <button onclick="eliminarDoctor()">Eliminar Doctor</button>
+    <h1>Doctores</h1>
+    Id doctor: <input type="number" id="cajaid"/><br/>
+    Id hospital: <input type="number" id="cajahospital"/><br/>
+    Apellido: <input type="text" id="cajaapellido"/><br/>
+    Especialidad: <input type="text" id="cajaespecialidad"/><br/>
+    Salario: <input type="number" id="cajasalario"/><br/>
+    <button onclick="insertarDoctor()">Insertar doctor</button>
+    <button onclick="modificarDoctor()">Modificar doctor</button>
+    <button onclick="eliminarDoctor()">Eliminar doctor</button>
     <table id="tabladoctores" border="1"></table>
 </body>
 </html>
