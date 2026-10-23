@@ -28,7 +28,8 @@
             cargarDoctores();
         }
         async function cargarDoctores(){
-            let ruta = url + "api/doctores";
+            let ruta = url + "api/Doctores";
+            console.log(ruta);
             let respuesta = await fetch(ruta);
             let datos = await respuesta.json();
             let contenido = "";
@@ -46,6 +47,42 @@
             let mostrar = document.getElementById("tabladoctores");
             mostrar.innerHTML = contenido;
         }
+        async function modificarDoctor() {
+            let ruta = url + "api/Doctores";
+            let doctor = {
+                "idDoctor" : parseInt(document.getElementById("iddoctor").value),
+                "idHospital" : parseInt(document.getElementById("idhospital").value),
+                "apellido" : document.getElementById("apellido").value,
+                "especialidad" : document.getElementById("especialidad").value,
+                "salario" : parseInt(document.getElementById("salario").value),
+            }
+            let respuesta = await fetch(ruta, {
+                "method" : "PUT",
+                "body" : JSON.stringify(doctor),
+                "headers" : {
+                    "content-type" : "application/json"
+                }
+            })
+            cargarDoctores();
+        }
+        async function eliminarDoctor(){
+            let ruta = url + "api/Doctores"
+            let doctor = {
+                "idDoctor" : parseInt(document.getElementById("iddoctor").value),
+                "idHospital" : parseInt(document.getElementById("idhospital").value),
+                "apellido" : document.getElementById("apellido").value,
+                "especialidad" : document.getElementById("especialidad").value,
+                "salario" : parseInt(document.getElementById("salario").value),
+            }
+            let respuesta = await fetch(ruta, {
+                "method" : "DELETE",
+                "body" : JSON.stringify(doctor),
+                "headers" : {
+                    "Content-Type": "application/json"
+                }
+            })
+            cargarDoctores();
+        }
     </script>
 </head>
 <body>
@@ -57,6 +94,8 @@
     Ingrese el salario: <input type="text" id="salario"><br/>
     <button onclick="insertarDoctores()">Insertar Doctores</button>
     <button onclick="cargarDoctores()">Cargar Doctores</button>
+    <button onclick="modificarDoctor()">Modificar Doctor</button>
+    <button onclick="eliminarDoctor()">Eliminar Doctor</button>
     <table id="tabladoctores" border="1"></table>
 </body>
 </html>
